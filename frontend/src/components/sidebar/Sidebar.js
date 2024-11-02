@@ -1,4 +1,5 @@
 import "./Sidebar.css";
+import avatar from "../../static/demo_avatar.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMagnifyingGlass,
@@ -11,6 +12,7 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import ProjectItem from "./projectItem/ProjectItem";
 const dummyProjects = ["My Project", "MERN Stackers"];
 const Sidebar = () => {
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
@@ -19,13 +21,14 @@ const Sidebar = () => {
     setIsSidebarVisible((prev) => !prev);
   };
   return (
-    // <div className="parent__container">
     <>
       {!isSidebarVisible ? (
         <div>
-          <button onClick={handleToggleSidebar}>
-            <FontAwesomeIcon icon={faBars} />
-          </button>
+          <FontAwesomeIcon
+            icon={faBars}
+            onClick={handleToggleSidebar}
+            style={{ marginTop: "10px", marginLeft: "10px" }}
+          />
         </div>
       ) : (
         <div
@@ -37,13 +40,25 @@ const Sidebar = () => {
         >
           <div>
             <div className="account__info_sidebar__toggle">
-              <div>
-                <img src="../../../static/demo_avatar.jpg"></img>
-                <button>Debarshi</button>
+              <div className="account__info__btn__container">
+                <img
+                  src={avatar}
+                  alt=""
+                  style={{
+                    width: "25px",
+                    borderRadius: "50%",
+                    marginRight: "10px",
+                  }}
+                ></img>
+                <h4 style={{ marginRight: "10px" }}>Debarshi</h4>
+                <FontAwesomeIcon
+                  icon={faChevronDown}
+                  style={{ width: "10px" }}
+                />
               </div>
               <div>
                 {/* <button onClick={handleToggleSidebar}>Toggle Sidebar</button> */}
-                <FontAwesomeIcon icon={faXmark} />
+                <FontAwesomeIcon icon={faXmark} onClick={handleToggleSidebar} />
               </div>
             </div>
             <div className="sidebar__middle__section">
@@ -79,21 +94,10 @@ const Sidebar = () => {
               </div>
             </div>
             <div className="project__section__container">
-              {dummyProjects.map((projectName, index) => {
+              {dummyProjects.map((project, index) => {
                 return (
-                  <div key={index} className="project__button__container">
-                    {projectName}
-                    <div>
-                      <FontAwesomeIcon
-                        icon={faPlus}
-                        style={{ marginRight: "10px" }}
-                        className="project__button__icon__container"
-                      />
-                      <FontAwesomeIcon
-                        icon={faChevronDown}
-                        className="project__button__icon__container"
-                      />
-                    </div>
+                  <div key={index}>
+                    <ProjectItem projectDetails={project} />
                   </div>
                 );
               })}
