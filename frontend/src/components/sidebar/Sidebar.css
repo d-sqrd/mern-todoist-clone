@@ -1,0 +1,68 @@
+* {
+    color: green;
+}
+.parent__container {
+    height: 100vh;
+    width: 15vw;
+    padding-left: 10px;
+    padding-right: 10px;
+    /* border: 1px solid black; */
+    flex-direction: column;
+    background: rgb(250, 250, 245);
+    transition: width 0.5s;
+}
+.sidebar__hide {
+    width: 0; 
+}
+.account__info_sidebar__toggle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px
+}
+.sidebar__middle__section{
+    display:flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+.sidebar__middle__section__item{
+    /* border: 1px solid red; */
+    height: 35px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    transition: background 0.5s;
+}
+.sidebar__middle__section__item:hover{
+    cursor:pointer;
+    background: rgb(236, 236, 228);
+
+}
+.sidebar__middle__section__item > span{
+    margin-right: 10px;
+}
+.project__section__container:hover{
+
+}
+.project__button__container {
+    height: 35px;
+    margin: 20px 0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    transition: background 0.5s;
+}
+.project__button__container:hover {
+    cursor:pointer;
+    background: rgb(236, 236, 228);
+}
+.project__button__icon__container{
+    opacity: 0.5;
+}
+.project__button__icon__container:hover{
+    opacity: 1;
+}
