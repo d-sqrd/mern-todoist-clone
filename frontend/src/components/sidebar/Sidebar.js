@@ -13,12 +13,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import ProjectItem from "./projectItem/ProjectItem";
-const dummyProjects = ["My Project", "MERN Stackers"];
+const dummyProjects = ["My Project", "MERN Stackers", "Python Eater"];
 const Sidebar = () => {
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+  const [isAcctInfoBtnClicked, setIsAcctInfoBtnClicked] = useState(false);
   const handleToggleSidebar = () => {
     console.log("inside handle toggle sidebar");
     setIsSidebarVisible((prev) => !prev);
+  };
+  const handleAccountInfoBtnClick = () => {
+    setIsAcctInfoBtnClicked((prev) => !prev);
   };
   return (
     <>
@@ -31,77 +35,83 @@ const Sidebar = () => {
           />
         </div>
       ) : (
-        <div
-          className={
-            isSidebarVisible
-              ? "parent__container"
-              : "parent__container sidebar__hide"
-          }
-        >
+        <div className="sidebar__parent__container">
+          <div className="sidebar__top__section">
+            <div
+              className="sidebar__account__info__btn__container"
+              onClick={handleAccountInfoBtnClick}
+            >
+              <img
+                src={avatar}
+                alt=""
+                style={{
+                  width: "25px",
+                  borderRadius: "50%",
+                  marginRight: "10px",
+                }}
+              ></img>
+              <h4 style={{ marginRight: "10px" }}>Debarshi</h4>
+              <FontAwesomeIcon icon={faChevronDown} style={{ width: "10px" }} />
+            </div>
+
+            <div>
+              <FontAwesomeIcon icon={faXmark} onClick={handleToggleSidebar} />
+            </div>
+          </div>
+          <div style={{ position: "relative" }}>
+            {isAcctInfoBtnClicked ? (
+              <div className="sidebar__acct__info__dropdown">
+                <div className="sidebar__btn__menu__dropdown__item">
+                  <p style={{ fontWeight: 500 }}>My Account</p>
+                </div>
+                <div className="sidebar__btn__menu__dropdown__item">
+                  <p style={{ fontWeight: 500 }}>Logout</p>
+                </div>
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
+          <div className="sidebar__middle__section">
+            <div className="sidebar__middle__section__item">
+              <span>
+                <FontAwesomeIcon icon={faPlus} />
+              </span>
+              Add Task
+            </div>
+            <div className="sidebar__middle__section__item">
+              <span>
+                <FontAwesomeIcon icon={faMagnifyingGlass} />
+              </span>
+              Search
+            </div>
+            <div className="sidebar__middle__section__item">
+              <span>
+                <FontAwesomeIcon icon={faEnvelope} />
+              </span>
+              Inbox
+            </div>
+            <div className="sidebar__middle__section__item">
+              <span>
+                <FontAwesomeIcon icon={faCalendarCheck} />
+              </span>
+              Today
+            </div>
+            <div className="sidebar__middle__section__item">
+              <span>
+                <FontAwesomeIcon icon={faCalendarWeek} />
+              </span>
+              Upcoming
+            </div>
+          </div>
           <div>
-            <div className="account__info_sidebar__toggle">
-              <div className="account__info__btn__container">
-                <img
-                  src={avatar}
-                  alt=""
-                  style={{
-                    width: "25px",
-                    borderRadius: "50%",
-                    marginRight: "10px",
-                  }}
-                ></img>
-                <h4 style={{ marginRight: "10px" }}>Debarshi</h4>
-                <FontAwesomeIcon
-                  icon={faChevronDown}
-                  style={{ width: "10px" }}
-                />
-              </div>
-              <div>
-                {/* <button onClick={handleToggleSidebar}>Toggle Sidebar</button> */}
-                <FontAwesomeIcon icon={faXmark} onClick={handleToggleSidebar} />
-              </div>
-            </div>
-            <div className="sidebar__middle__section">
-              <div className="sidebar__middle__section__item">
-                <span>
-                  <FontAwesomeIcon icon={faPlus} />
-                </span>
-                Add Task
-              </div>
-              <div className="sidebar__middle__section__item">
-                <span>
-                  <FontAwesomeIcon icon={faMagnifyingGlass} />
-                </span>
-                Search
-              </div>
-              <div className="sidebar__middle__section__item">
-                <span>
-                  <FontAwesomeIcon icon={faEnvelope} />
-                </span>
-                Inbox
-              </div>
-              <div className="sidebar__middle__section__item">
-                <span>
-                  <FontAwesomeIcon icon={faCalendarCheck} />
-                </span>
-                Today
-              </div>
-              <div className="sidebar__middle__section__item">
-                <span>
-                  <FontAwesomeIcon icon={faCalendarWeek} />
-                </span>
-                Upcoming
-              </div>
-            </div>
-            <div className="project__section__container">
-              {dummyProjects.map((project, index) => {
-                return (
-                  <div key={index}>
-                    <ProjectItem projectDetails={project} />
-                  </div>
-                );
-              })}
-            </div>
+            {dummyProjects.map((project, index) => {
+              return (
+                <div key={index}>
+                  <ProjectItem projectDetails={project} />
+                </div>
+              );
+            })}
           </div>
         </div>
       )}
