@@ -1,12 +1,11 @@
-import "./ProjectItem.css";
+import "./WorkspaceItem.css";
+import projects from "../../../static/projects";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import PlusButtonDropDown from "./plusButtonDropdown/PlusButtonDropDown";
 
-const subProjectItems = ["Sub Project Item 1", "Sub Project Item 2"];
-
-const ProjectItem = ({ projectDetails }) => {
+const WorkspaceItem = ({ workspaceDetails }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isPlusBtnMenuOpen, setIsPlusBtnMenuOpen] = useState(false);
   const handleArrowClick = () => {
@@ -18,38 +17,38 @@ const ProjectItem = ({ projectDetails }) => {
   };
   return (
     <div style={{ margin: "20px 0px" }}>
-      <div className="project__item__header__container">
-        <p style={{ fontWeight: 500 }}>{projectDetails}</p>
-        <div style={{ position: "relative" }} className="grandpa">
+      <div className="workspace__item__header__container">
+        <p style={{ fontWeight: 500 }}>{workspaceDetails.name}</p>
+        <div style={{ position: "relative" }}>
           <FontAwesomeIcon
             icon={faPlus}
             style={{ marginRight: "10px" }}
-            className="project__item__button__icons"
+            className="workspace__item__button__icons"
             onClick={handlePlusIconClick}
           />
           <FontAwesomeIcon
             icon={faAngleRight}
             className={
               isCollapsed
-                ? "project__item__button__icons project__item__arrow__clockwise__animate"
-                : "project__item__button__icons project__item__arrow__anti-clockwise__animate"
+                ? "workspace__item__button__icons workspace__item__arrow__clockwise__animate"
+                : "workspace__item__button__icons workspace__item__arrow__anti-clockwise__animate"
             }
             onClick={handleArrowClick}
           />
           <PlusButtonDropDown isOpen={isPlusBtnMenuOpen} />
         </div>
       </div>
-      {subProjectItems.map((subProjectItem, index) => {
+      {projects.map((projectItem, index) => {
         return (
           <div
             key={index}
             className={
               isCollapsed
-                ? "project__item__subproject__container"
-                : "project__item__subproject__container__close"
+                ? "workspace__item__subproject__container"
+                : "workspace__item__subproject__container__close"
             }
           >
-            <div>{subProjectItem}</div>
+            <div>{projectItem.name}</div>
           </div>
         );
       })}
@@ -57,4 +56,4 @@ const ProjectItem = ({ projectDetails }) => {
   );
 };
 
-export default ProjectItem;
+export default WorkspaceItem;

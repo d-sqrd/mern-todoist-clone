@@ -1,5 +1,6 @@
 import "./Sidebar.css";
 import avatar from "../../static/demo_avatar.jpg";
+import workspaces from "../../static/workspaces";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMagnifyingGlass,
@@ -12,14 +13,13 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import ProjectItem from "./projectItem/ProjectItem";
-const dummyProjects = ["My Project", "MERN Stackers", "Python Eater"];
-const Sidebar = () => {
-  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+import WorkspaceItem from "./workspaceItem/WorkspaceItem";
+const Sidebar = ({ isSidebarVisible, toggleSidebar }) => {
   const [isAcctInfoBtnClicked, setIsAcctInfoBtnClicked] = useState(false);
   const handleToggleSidebar = () => {
     console.log("inside handle toggle sidebar");
-    setIsSidebarVisible((prev) => !prev);
+    // setIsSidebarVisible((prev) => !prev);
+    toggleSidebar();
   };
   const handleAccountInfoBtnClick = () => {
     setIsAcctInfoBtnClicked((prev) => !prev);
@@ -105,10 +105,10 @@ const Sidebar = () => {
             </div>
           </div>
           <div>
-            {dummyProjects.map((project, index) => {
+            {workspaces.map((workspace, index) => {
               return (
                 <div key={index}>
-                  <ProjectItem projectDetails={project} />
+                  <WorkspaceItem workspaceDetails={workspace} />
                 </div>
               );
             })}

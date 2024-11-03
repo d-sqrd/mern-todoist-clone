@@ -1,0 +1,13 @@
+.tasks__parent__container {
+    height: 100vh;
+    border: "2px solid magenta";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 15vw;
+    flex-grow: 1;
+    transition: margin-left 0.5s ease-out;
+}
+.tasks__parent__container__margin__left__animate {
+    margin: 0 0;
+}
